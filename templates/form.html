@@ -1,0 +1,105 @@
+<div layout="column" flex-offset="10" flex="80">
+    <h2 layout="row" layout-align="center center">Form</h2>
+    <div>
+        <md-card>
+            <md-toolbar class="md-primary">
+                <div class="md-toolbar-tools">
+                    <h2 class="md-flex">
+                        {{category | uppercase}}
+                    </h2>
+                </div>
+            </md-toolbar>
+            <form name="homeDeliveryForm">
+                <div layout="row" layout-padding>
+                    <md-radio-group layout="row" ng-model="category">
+                        <div layout="column" layout-padding>
+                            <md-radio-button value="restaurant">
+                                Restaurant
+                            </md-radio-button>
+                            <md-radio-button value="grocery">
+                                Grocery
+                            </md-radio-button>
+                            <md-radio-button value="pharmacy">
+                                Pharmacy
+                            </md-radio-button>
+                        </div> 
+                        <div layout="column" layout-padding>
+                            <md-radio-button value="cableProvider">
+                                Cable Provider
+                            </md-radio-button>
+                            <md-radio-button value="isp">
+                                ISP
+                            </md-radio-button>
+                            <md-radio-button value="parlour">
+                                Parlour
+                            </md-radio-button>
+                        </div>
+                        <div layout="column" layout-padding>
+                            <md-radio-button value="milkman">
+                                Milkman
+                            </md-radio-button>
+                            <md-radio-button value="laundry">
+                                Laundry
+                            </md-radio-button>
+                            <md-radio-button value="newspaperDelivery">
+                                Newspaper Delivery
+                            </md-radio-button>
+                        </div>
+                    </md-radio-group>
+                </div>
+                <div layout="row" layout-padding>
+                    <md-input-container 
+                        class="md-block"
+                        flex="50">
+                        <label>Name</label>
+                        <input name="name" ng-model="info.name" required>
+                        <div ng-messages="homeDeliveryForm.name.$error" role="alert">
+                            <div ng-message="required">
+                                Name is required.
+                            </div>
+                        </div>
+                    </md-input-container>
+                    <md-input-container 
+                        class="md-block"
+                        flex="50">
+                        <label>Contact Number</label>
+                        <input 
+                            name="contact" 
+                            type="number"
+                            ng-model="info.contact" 
+                            ng-minlength="10"
+                            ng-maxlength="10"
+                            required>
+                        <div ng-messages="homeDeliveryForm.contact.$error" role="alert">
+                            <div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+                                Phone number must be 10 characters long .
+                            </div>
+                        </div>
+                    </md-input-container>
+                </div>
+                <div layout="row" layout-align="end end">
+                    <md-button 
+                        class="md-primary md-raised" 
+                        ng-click="pushService(info, category)"
+                        ng-disabled="homeDeliveryForm.$invalid || !category">Submit</md-button>
+                </div>
+            </form>
+        </md-card>
+    </div>
+    <div layout-padding>
+        <table>
+            <thead>
+                <th>Category</th>
+                <th>Name</th>
+                <th>Contact</th>
+            </thead>
+            <tbody ng-repeat="(key,value) in items">
+                <tr ng-repeat="(key1, value1) in value">
+                    <td>{{key | uppercase}}</td>
+                    <td>{{value1.name}}</td>
+                    <td>{{value1.contact}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

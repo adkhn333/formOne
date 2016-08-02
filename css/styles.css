@@ -1,0 +1,24 @@
+table {
+	width: 100%;
+}
+table, th, td {
+	border-collapse: collapse;
+	border: 1px solid #eee;
+	padding: 10px;
+}
+table tbody {
+    background-color: #fff;
+}
+table th {
+    color: white;
+    background-color: #3d3d3d;
+}
+table tbody tr td {
+	text-align: center;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
